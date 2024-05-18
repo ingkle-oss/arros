@@ -22,7 +22,7 @@ services:
       /usr/bin/mc mb --ignore-existing minio/contents;
       /usr/bin/mc admin config set minio notify_kafka:arros brokers=redpanda:9092 topic=contents;
       /usr/bin/mc admin service restart minio;
-      /usr/bin/mc event add minio/contents arn:minio:sqs::arros:kafka;
+      /usr/bin/mc event add --event put minio/contents arn:minio:sqs::arros:kafka;
       exit 0;
       "
 

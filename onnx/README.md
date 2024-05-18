@@ -28,6 +28,13 @@ curl -X POST http://127.0.0.1:8888/pipelines/onnx -F 'file=@onnx.sql'
 curl -X POST http://127.0.0.1:8888/pipelines/onnx/execute
 ```
 
+# Upload a image file
+
+```bash
+mc config host add minio http://localhost:9000 arros eros1004
+mc cp [image file] minio/contents
+```
+
 # Fetch json results from onnx pipeline
 
 ```bash

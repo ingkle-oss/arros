@@ -1,12 +1,12 @@
-DROP TABLE IF EXISTS image0;
+DROP TABLE IF EXISTS contents;
 DROP TABLE IF EXISTS buffer0;
-CREATE TABLE image0 (url varchar) AS VALUES
-    ('https://images.dog.ceo/breeds/retriever-golden/n02099601_3004.jpg'),
-    ('https://images.dog.ceo/breeds/eskimo/n02109961_18527.jpg'),
-    ('https://images.dog.ceo/breeds/spitz-japanese/tofu.jpg');
+CREATE UNBOUNDED EXTERNAL TABLE contents STORED AS KAFKA LOCATION 'contents' OPTIONS ('bootstrap.servers' 'redpanda:9092', 'security.protocol' 'plaintext');
 LOAD 'model=resnet50:latest';
 SET model='resnet50';
 SET provider='CPUExecutionProvider';
+CREATE FUNCTION s3event(varchar, varchar) RETURNS varchar AS 's3event';
+CREATE FUNCTION s3presign(varchar) RETURNS varchar AS 's3presign';
 CREATE FUNCTION pycall(varchar) RETURNS bigint AS 'onnx';
 CREATE UNBOUNDED EXTERNAL TABLE buffer0 (url varchar, result bigint) STORED AS BUFFER location 'buffer0';
-INSERT INTO buffer0 SELECT url, pycall(url) FROM image0;
+CREATE VIEW events AS SELECT s3event(__meta__payload, 'create') AS object FROM contents;
+INSERT INTO buffer0 SELECT object, pycall(s3presign(object)) FROM events;
