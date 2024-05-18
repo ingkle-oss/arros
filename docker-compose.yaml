@@ -111,6 +111,7 @@ services:
       AWS_REGION: default
       AWS_S3_ALLOW_UNSAFE_RENAME: true
       AWS_ALLOW_HTTP: true
+      AWS_FORCE_PATH_STYLE: true
     depends_on:
       - postgres
 
@@ -135,3 +136,4 @@ services:
       AWS_REGION: default
       AWS_S3_ALLOW_UNSAFE_RENAME: true
       AWS_ALLOW_HTTP: true
+      AWS_FORCE_PATH_STYLE: true
