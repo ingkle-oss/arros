@@ -27,3 +27,9 @@ curl -X POST http://127.0.0.1:8888/pipelines/simple -F 'file=@simple.sql'
 ```bash
 curl -X POST http://127.0.0.1:8888/pipelines/simple/execute
 ```
+
+# Fetch json results from simple pipeline
+
+```bash
+curl -X POST http://127.0.0.1:8888/sql -H 'format: json' -d 'select * from buffer0'
+```
