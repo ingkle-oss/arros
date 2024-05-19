@@ -1,3 +1,7 @@
+## Simple
+
+Count records on user-defined function
+
 # Add count function
 
 ```bash

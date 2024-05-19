@@ -1,3 +1,7 @@
+## Table
+
+Stream records into arrow ipc stream server
+
 # Run arrow ipc stream server for table
 
 ```bash

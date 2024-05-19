@@ -13,9 +13,6 @@ if __name__ == "__main__":
     parser.add_argument("--port", help="listen port", type=int, default=8081)
     args = parser.parse_args()
 
-    functions = {}
-    objects = {}
-
     app = FastAPI()
     app.add_middleware(
         CORSMiddleware,
