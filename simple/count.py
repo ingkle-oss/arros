@@ -1,1 +1,1 @@
-results = [len(column0)]
+__arros__results = [len(__arros__column0)]
